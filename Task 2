@@ -1,0 +1,9 @@
+## 1. Find length of an array
+#include <iostream>
+using namespace std;
+ 
+int main() {
+	int arr[]={8,2,3,4,6,7,0};
+	int size=sizeof(arr)/sizeof(arr[0]);
+	cout<<"size of array is: "<<size;
+}
