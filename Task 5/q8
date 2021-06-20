@@ -1,4 +1,4 @@
-9. delete a specific node from a given linked list.
+ delete a node whose pointer to that node is given only.
 
 
 class Solution
