@@ -1,0 +1,65 @@
+6. check whether the given linked list is palindrome or not.
+
+
+class Solution{
+  public:
+    Node* reverse(Node* head)
+    {
+        Node* curr=head;
+        Node* prev=NULL;
+        while(curr)
+        {
+            Node* n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+            
+        }
+        
+        return prev;
+    }
+    
+
+    bool isPalindrome(Node *head)
+    {
+         Node* fast=head;
+         Node* slow=head;
+   while(fast && fast->next)
+   {
+       slow=slow->next;
+       fast=fast->next->next;
+   }
+   
+   if(fast)
+   {
+       Node* temp1=head;
+       Node* temp2=reverse(slow);
+       while(temp1 && temp2->next)
+       {
+           if(temp1->data!=temp2->data)
+           {
+               return false;
+           }
+           temp1=temp1->next;
+           temp2=temp2->next;
+       }
+   }
+   
+   else
+   {
+       Node* temp1=head;
+       Node* temp2=reverse(slow);
+       while(temp1 && temp2)
+       {
+           if(temp1->data!=temp2->data)
+           {
+               return false;
+           }
+           temp1=temp1->next;
+           temp2=temp2->next;
+   }
+   }
+   return true;
+   
+    }
+};
