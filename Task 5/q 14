@@ -1,0 +1,25 @@
+ merge linkedlist alternatively
+	l1->l11->l12->l13->l14
+	l2->l21->l22->l23->l24
+	result --> l11->l21->l12->l22->l13->l23->l14->l24
+
+
+void mergeList(struct Node **p, struct Node **q)
+{
+     
+     Node *temp1=*p;
+     Node *temp2=*q;
+     Node* n=NULL;
+     Node* m=NULL;
+     while(temp1 && temp2)
+     {
+         n=temp1->next;
+         m=temp2->next;
+         temp1->next=temp2;
+         temp2->next=n;
+         temp1=n;
+         temp2=m;
+     }
+     *q=m;
+     
+}
