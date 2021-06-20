@@ -1,0 +1,13 @@
+ find the length of linked list
+ 
+ int getCount(Node* head)
+{
+    int count = 0; 
+    Node* current = head; 
+    while (current != NULL)
+    {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
