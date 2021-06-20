@@ -1,0 +1,52 @@
+merge two sorted linked list
+
+
+
+Node* sortedMerge(Node* a, Node* b)  
+{  
+    
+    Node* head=NULL;
+    Node* tail=NULL;
+    Node* temp1=a,*temp2=b;
+    if(a->data<b->data)
+    {
+        head=a;
+        temp1=temp1->next;
+        
+    }
+    else
+    {
+        head=b;
+        temp2=temp2->next;
+    }
+    tail=head;
+    while(temp1 && temp2)
+    {
+        if(temp1->data<temp2->data)
+        {
+            tail->next=temp1;
+            tail=tail->next;
+            temp1=temp1->next;
+        }
+        else
+        {
+            tail->next=temp2;
+            tail=tail->next;
+            temp2=temp2->next;
+        }
+        
+    }
+    
+    if(temp1)
+        {
+            tail->next=temp1;
+            
+        }
+    if(temp2)
+        {
+            tail->next=temp2;
+            
+        }
+    
+    return head;
+}  
