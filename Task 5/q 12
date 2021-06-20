@@ -1,0 +1,44 @@
+ given a linked list arrange it in the below fashion
+	L0->Ln-1->L1->Ln-2->L2->Ln-3->null;
+  
+  
+  Node* reverse(Node* head)
+    {
+        Node* curr=head;
+        Node* prev=NULL;
+        while(curr)
+        {
+            Node* n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+            
+        }
+        
+        return prev;
+    }
+
+void reorderList(Node* head) {
+    Node* slow=head;
+    Node* fast=head;
+    while(fast && fast->next)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        
+    }
+    
+    Node* mid=reverse(slow->next);
+    slow->next=NULL;
+    Node* temp=head;
+    while(temp && mid)
+    {
+        Node* x=temp->next;
+        Node* y=mid->next;
+        temp->next=mid;
+        mid->next=x;
+        temp=x;
+        mid=y;
+    }
+    
+}
