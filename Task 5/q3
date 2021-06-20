@@ -1,0 +1,82 @@
+3 Count Inversions of an array
+
+
+class Solution{
+  public:
+    
+long long merge(long long arr[],long long l,long long mid, long long r)
+{
+    long long n1=mid-l+1;
+    long long n2=r-mid;
+    long long temp1[n1];
+    long long temp2[n2];
+    for(long long i=0;i<n1;i++)
+    {
+        temp1[i]=arr[l+i];
+    }
+    
+    for(long long i=0;i<n2;i++)
+    {
+        temp2[i]=arr[mid+1+i];
+    }
+    long long i=0;
+    long long j=0;
+    long long k=l;
+    long long count= 0;
+    while(i<n1 && j<n2)
+    {
+        if(temp1[i]<=temp2[j])
+        {
+            arr[k]=temp1[i];
+            i++;
+        }
+        
+        else
+        {
+            arr[k]=temp2[j];
+            count=count+(n1-i);
+            j++;
+            
+        }
+        
+        k++;
+        
+    }
+    
+    while(i<n1)
+        {
+            arr[k]=temp1[i];
+            i++;
+            k++;
+        }
+        
+    while(j<n2)
+        {
+            arr[k]=temp2[j];
+            j++;
+            k++;
+        }
+        
+        return count;
+}
+long long mergesort(long long arr[],long long l, long long r)
+{
+    long long count=0;
+    if(l<r)
+    {
+    long long mid=l+(r-l)/2;
+    count+=mergesort(arr,l,mid);
+    count+=mergesort(arr,mid+1,r);
+    count+=merge(arr,l,mid,r);
+    }
+    
+    return count;
+}
+long long int inversionCount(long long arr[], long long N)
+{
+   return mergesort(arr,0,N-1);
+    
+    //return count;
+    
+    
+}
